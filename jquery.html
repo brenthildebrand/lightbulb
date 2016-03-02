@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jquery homework</title>
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script>
+        $(document).ready(function(){
+          var red = 0;
+          var green = 0;
+          var blue = 0;
+          var currentColor = "";
+        $(".color_picker").click(function(){
+          $(".color_picker").removeClass("slided");
+          $(".invisible_slider").toggleClass("invisible_slided");
+        })
+        $(".color_choice").click(function(){
+          currentColor = $(this).css("background-color");
+          $(".color").css("background-color", currentColor);
+        })
+        $(".invisible_slider").click(function(){
+          $(".invisible_slider").toggleClass("invisible_slided");
+          $(".color_picker").addClass("slided");
+        })
+        });
+
+    </script>
+    <style>
+        body{
+          background-color:black;
+        }
+        .bulb{
+        width: 350px;
+        height: 470px;
+        background-image: url("light-bulb1.png");
+        background-size: 100%;
+        margin: 100px auto;
+        position: relative;
+        z-index:2;
+        }
+        .color{
+          width: 345px;
+          height: 465px;
+          background-size: 100%;
+          margin: -565px auto 0 auto;
+          position:relative;
+          z-index: 0;
+          background-color: yellow;
+          -webkit-transition: background-color 2s;
+        }
+        .color_picker{
+          background-color:pink;
+          width:150px;
+          height:100vw;
+          position:fixed;
+          top:0px;
+          left:-135px;
+          -webkit-transition: left .7s;
+          cursor:pointer;
+        }
+        .slided{
+          left:0px;
+        }
+        .color_choice{
+          width: 100%;
+          height: 3.3333vh;
+          color:red;
+        }
+        .invisible_slider{
+          height:100vh;
+          width:13px;
+          position:fixed;
+          top:0px;
+          left:0px;
+          z-index:3;
+          cursor: pointer;
+        }
+        .invisible_slided{
+          left:-100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="bulb"></div>
+    <div class="color"></div>
+    <div class="color_picker">
+        <div class="color_choice" style="background-color:blue"></div>
+        <div class="color_choice" style="background-color:#3333ff"></div>
+        <div class="color_choice" style="background-color:#3333cc"></div>
+        <div class="color_choice" style="background-color:#6600ff"></div>
+        <div class="color_choice" style="background-color:#9933ff"></div>
+        <div class="color_choice" style="background-color:#cc00ff"></div>
+        <div class="color_choice" style="background-color:#cc00cc"></div>
+        <div class="color_choice" style="background-color:#cc0099"></div>
+        <div class="color_choice" style="background-color:#cc3399"></div>
+        <div class="color_choice" style="background-color:#ff0066"></div>
+        <div class="color_choice" style="background-color:#cc0066"></div>
+        <div class="color_choice" style="background-color:red"></div>
+        <div class="color_choice" style="background-color:#ff3300"></div>
+        <div class="color_choice" style="background-color:#cc6600"></div>
+        <div class="color_choice" style="background-color:#ff9900"></div>
+        <div class="color_choice" style="background-color:#cc9900"></div>
+        <div class="color_choice" style="background-color:#cccc00"></div>
+        <div class="color_choice" style="background-color:#669900"></div>
+        <div class="color_choice" style="background-color:#009933"></div>
+        <div class="color_choice" style="background-color:#00cc66"></div>
+        <div class="color_choice" style="background-color:#00cc99"></div>
+        <div class="color_choice" style="background-color:#009999"></div>
+        <div class="color_choice" style="background-color:#006699"></div>
+        <div class="color_choice" style="background-color:#0099cc"></div>
+        <div class="color_choice" style="background-color:#0066cc"></div>
+        <div class="color_choice" style="background-color:#0033cc"></div>
+        <div class="color_choice" style="background-color:#1a53ff"></div>
+        <div class="color_choice" style="background-color:white"></div>
+        <div class="color_choice" style="background-color:grey"></div>
+        <div class="color_choice" style="background-color:black"></div>
+    </div>
+    <div class="invisible_slider"></div>
+
+</body>
+</html>
