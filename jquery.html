@@ -5,15 +5,20 @@
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script>
         $(document).ready(function(){
-          var red = 0;
-          var green = 0;
-          var blue = 0;
           var currentColor = "";
+          var variableColor = 0;
+          var variableColorChoice = 0;
+          var running = false;
+          var colorOptions = ["blue", "#3333ff", "#3333cc", "#6600ff", "#9933ff", "#cc00ff", "#cc00cc", "#cc0099", "#cc3399", "#ff0066", "#cc0066", "red", "#ff3300", "#cc6600", "#ff9900", "#cc9900", "#cccc00", "#669900", "#009933", "#00cc66", "#00cc99", "#009999", "#006699", "#0099cc", "#0066cc"]
+          var coloring = "";
+
         $(".color_picker").click(function(){
           $(".color_picker").removeClass("slided");
           $(".invisible_slider").toggleClass("invisible_slided");
         })
         $(".color_choice").click(function(){
+          stopVarying();
+          $(".color_varying").css("background-color", "transparent");
           currentColor = $(this).css("background-color");
           $(".color").css("background-color", currentColor);
         })
@@ -21,8 +26,43 @@
           $(".invisible_slider").toggleClass("invisible_slided");
           $(".color_picker").addClass("slided");
         })
-        });
+        function colorChanging(){
+          if(variableColor < colorOptions.length){
+            $(".color_varying").css("background-color", colorOptions[variableColor])
+            variableColor += 1;
+          } else {
+            $(".color_varying").css("background-color", colorOptions[variableColor])
+            variableColor = 0;
+            //varying();
+          }
+        }
+        function varying(){
+          coloring = setInterval(colorChanging, 100);
+        }
+        function stopVarying(){
+          clearInterval(coloring);
+        }
 
+        function colorChangingChoice(){
+          if(variableColorChoice < colorOptions.length){
+            $(".color_changing_choice").css("background-color", colorOptions[variableColorChoice])
+            variableColorChoice += 1;
+          } else {
+            $(".color_changing_choice").css("background-color", colorOptions[variableColorChoice])
+            variableColorChoice = 0;
+            //varying();
+          }
+        }
+        function varyingChoice(){
+          setInterval(colorChangingChoice, 100);
+
+        }
+        $(".color_changing_choice").click(function(){
+          varying();
+        })
+        varyingChoice();
+
+        });
     </script>
     <style>
         body{
@@ -47,8 +87,16 @@
           background-color: yellow;
           -webkit-transition: background-color 2s;
         }
+        .color_varying{
+          width: 345px;
+          height: 465px;
+          background-size: 100%;
+          margin: -470px auto 0 auto;
+          position:relative;
+          z-index: 0;
+          -webkit-transition: background-color .4s;
+        }
         .color_picker{
-          background-color:pink;
           width:150px;
           height:100vw;
           position:fixed;
@@ -56,18 +104,28 @@
           left:-135px;
           -webkit-transition: left .7s;
           cursor:pointer;
+          z-index: 2
         }
         .slided{
-          left:0px;
+          left:-1px;
         }
         .color_choice{
           width: 100%;
           height: 3.3333vh;
           color:red;
+          border-radius: 0 3.3333vh 3.3333vh 0;
+        }
+        .color_changing_choice{
+          width: 100%;
+          height: 3.3333vh;
+          color:red;
+          border-radius: 0 3.3333vh 3.3333vh 0;
+          -webkit-transition: background-color .4s;
+
         }
         .invisible_slider{
           height:100vh;
-          width:13px;
+          width:15px;
           position:fixed;
           top:0px;
           left:0px;
@@ -77,11 +135,50 @@
         .invisible_slided{
           left:-100px;
         }
+        .variable{
+          height:100px;
+          width: 100px;
+          background-color: blue;
+          position: absolute;
+          left:80px;
+          top:80px;
+        }
+        /*@media (max-width: 700px) {
+          .color{
+            width: 600px;
+            height: 930px;
+            background-size: 100%;
+            margin: -1235px auto 0 auto;
+            position:relative;
+            z-index: 0;
+            background-color: yellow;
+          }
+            .bulb{
+            width: 700px;
+            height: 940px;
+            background-image: url("light-bulb1.png");
+            background-size: 100%;
+            margin: 300px auto;
+            position: relative;
+            z-index:2;
+            }
+            .color_varying{
+              width: 600px;
+              height: 930px;
+              background-size: 100%;
+              margin: -927px auto 0 auto;
+              position:relative;
+              z-index: 0;
+              -webkit-transition: background-color .4s;
+            }
+          }*/
+        }
     </style>
 </head>
 <body>
     <div class="bulb"></div>
     <div class="color"></div>
+    <div class="color_varying"></div>
     <div class="color_picker">
         <div class="color_choice" style="background-color:blue"></div>
         <div class="color_choice" style="background-color:#3333ff"></div>
@@ -92,8 +189,8 @@
         <div class="color_choice" style="background-color:#cc00cc"></div>
         <div class="color_choice" style="background-color:#cc0099"></div>
         <div class="color_choice" style="background-color:#cc3399"></div>
-        <div class="color_choice" style="background-color:#ff0066"></div>
         <div class="color_choice" style="background-color:#cc0066"></div>
+        <div class="color_choice" style="background-color:#ff0066"></div>
         <div class="color_choice" style="background-color:red"></div>
         <div class="color_choice" style="background-color:#ff3300"></div>
         <div class="color_choice" style="background-color:#cc6600"></div>
@@ -105,14 +202,14 @@
         <div class="color_choice" style="background-color:#00cc66"></div>
         <div class="color_choice" style="background-color:#00cc99"></div>
         <div class="color_choice" style="background-color:#009999"></div>
-        <div class="color_choice" style="background-color:#006699"></div>
         <div class="color_choice" style="background-color:#0099cc"></div>
+        <div class="color_choice" style="background-color:#006699"></div>
         <div class="color_choice" style="background-color:#0066cc"></div>
         <div class="color_choice" style="background-color:#0033cc"></div>
-        <div class="color_choice" style="background-color:#1a53ff"></div>
+        <div class="color_changing_choice"></div>
         <div class="color_choice" style="background-color:white"></div>
         <div class="color_choice" style="background-color:grey"></div>
-        <div class="color_choice" style="background-color:black"></div>
+        <div class="color_choice" style="border:1px solid white"></div>
     </div>
     <div class="invisible_slider"></div>
 
