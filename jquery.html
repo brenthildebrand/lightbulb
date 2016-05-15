@@ -4,7 +4,7 @@
     <title>jquery homework</title>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script>
-        $(document).ready(function(){
+        $(function(){
           var currentColor = "";
           var variableColor = 0;
           var variableColorChoice = 0;
@@ -17,7 +17,8 @@
           $(".invisible_slider").toggleClass("invisible_slided");
         })
         $(".color_choice").click(function(){
-          stopVarying();
+          //stopVarying();
+          running = false;
           $(".color_varying").css("background-color", "transparent");
           currentColor = $(this).css("background-color");
           $(".color").css("background-color", currentColor);
@@ -26,31 +27,20 @@
           $(".invisible_slider").toggleClass("invisible_slided");
           $(".color_picker").addClass("slided");
         })
-        function colorChanging(){
-          if(variableColor < colorOptions.length){
-            $(".color_varying").css("background-color", colorOptions[variableColor])
-            variableColor += 1;
-          } else {
-            $(".color_varying").css("background-color", colorOptions[variableColor])
-            variableColor = 0;
-            //varying();
-          }
-        }
-        function varying(){
-          coloring = setInterval(colorChanging, 100);
-        }
-        function stopVarying(){
-          clearInterval(coloring);
-        }
-
         function colorChangingChoice(){
           if(variableColorChoice < colorOptions.length){
             $(".color_changing_choice").css("background-color", colorOptions[variableColorChoice])
+            //$(".color_varying").css("background-color", colorOptions[variableColorChoice])
             variableColorChoice += 1;
           } else {
             $(".color_changing_choice").css("background-color", colorOptions[variableColorChoice])
+            //$(".color_varying").css("background-color", colorOptions[variableColorChoice])
             variableColorChoice = 0;
             //varying();
+          }
+          if(running == true){
+            $(".color_varying").css("background-color", colorOptions[variableColorChoice])
+
           }
         }
         function varyingChoice(){
@@ -58,7 +48,9 @@
 
         }
         $(".color_changing_choice").click(function(){
-          varying();
+          if(running !== true){
+          running = true;
+          }
         })
         varyingChoice();
 
@@ -120,7 +112,7 @@
           height: 3.3333vh;
           color:red;
           border-radius: 0 3.3333vh 3.3333vh 0;
-          -webkit-transition: background-color .4s;
+          -webkit-transition: background-color .77s;
 
         }
         .invisible_slider{
@@ -196,7 +188,7 @@
         <div class="color_choice" style="background-color:#cc6600"></div>
         <div class="color_choice" style="background-color:#ff9900"></div>
         <div class="color_choice" style="background-color:#cc9900"></div>
-        <div class="color_choice" style="background-color:#cccc00"></div>
+        <div class="color_choice" style="background-color:yellow"></div>
         <div class="color_choice" style="background-color:#669900"></div>
         <div class="color_choice" style="background-color:#009933"></div>
         <div class="color_choice" style="background-color:#00cc66"></div>
