@@ -1,0 +1,78 @@
+body{
+  background-color:black;
+}
+.bulb{
+width: 350px;
+height: 470px;
+background-image: url("light-bulb1.png");
+background-size: 100%;
+margin: 100px auto;
+position: relative;
+z-index:2;
+}
+.color{
+  width: 345px;
+  height: 465px;
+  background-size: 100%;
+  margin: -565px auto 0 auto;
+  position:relative;
+  z-index: 0;
+  background-color: yellow;
+  -webkit-transition: background-color 2s;
+}
+.color_varying{
+  width: 345px;
+  height: 465px;
+  background-size: 100%;
+  margin: -470px auto 0 auto;
+  position:relative;
+  z-index: 0;
+  -webkit-transition: background-color .4s;
+}
+.color_picker{
+  width:150px;
+  height:100vw;
+  position:fixed;
+  top:0px;
+  left:-135px;
+  -webkit-transition: left .7s;
+  cursor:pointer;
+  z-index: 2
+}
+.slided{
+  left:-1px;
+}
+.color_choice{
+  width: 100%;
+  height: 3.3333vh;
+  color:red;
+  border-radius: 0 3.3333vh 3.3333vh 0;
+}
+.color_changing_choice{
+  width: 100%;
+  height: 3.3333vh;
+  color:red;
+  border-radius: 0 3.3333vh 3.3333vh 0;
+  -webkit-transition: background-color .77s;
+
+}
+.invisible_slider{
+  height:100vh;
+  width:15px;
+  position:fixed;
+  top:0px;
+  left:0px;
+  z-index:3;
+  cursor: pointer;
+}
+.invisible_slided{
+  left:-100px;
+}
+.variable{
+  height:100px;
+  width: 100px;
+  background-color: blue;
+  position: absolute;
+  left:80px;
+  top:80px;
+}
